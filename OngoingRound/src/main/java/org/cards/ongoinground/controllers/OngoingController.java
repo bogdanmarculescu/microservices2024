@@ -21,6 +21,7 @@ public class OngoingController {
     public OutcomeR communicationSolution(){
         RoundR roundR = new RoundR();
         roundR.playedCardId = 42;
+        roundR.roundId = 42L;
 
         OutcomeR or = ongoingRound.completeRound(roundR);
         return or;
