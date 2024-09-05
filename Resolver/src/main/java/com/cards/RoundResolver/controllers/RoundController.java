@@ -6,6 +6,8 @@ import com.cards.RoundResolver.services.LessSimpleRoundResolver;
 import com.cards.RoundResolver.services.SimplestRoundResolver;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatusCode;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @Slf4j
@@ -25,9 +27,14 @@ public class RoundController {
     }
 
     @PostMapping
-    public Outcome resolve(@RequestBody Round round){
+    public ResponseEntity<Outcome> resolve(@RequestBody Round round){
         log.info("It's a test 2! This time it's objects");
 
-        return roundResolver.solve(round);
+        Outcome outcome = roundResolver.solve(round);
+        log.warn("Here's what I'm sending: " + outcome.getOutcomeText());
+
+        ResponseEntity<Outcome> result = new ResponseEntity<>(outcome, HttpStatusCode.valueOf(200));
+
+        return result;
     }
 }

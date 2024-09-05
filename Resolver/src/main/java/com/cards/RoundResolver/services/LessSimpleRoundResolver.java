@@ -22,6 +22,6 @@ public class LessSimpleRoundResolver implements RoundResolver {
     }
 
     public Outcome solve(Round round, int dieRoll){
-        return new Outcome("I had a die roll" + dieRoll, 42L);
+        return new Outcome("I had a die roll: " + dieRoll, 42L);
     }
 }
