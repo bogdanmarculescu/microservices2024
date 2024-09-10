@@ -15,7 +15,7 @@ public class LessSimpleRoundResolver implements RoundResolver {
 
     @Override
     public Outcome solve(Round round) {
-        int dieRoll = rand.nextInt(6);
+        int dieRoll = rand.nextInt(6) + 1;
         log.info("Random number: " + dieRoll);
 
         return solve(round, dieRoll);
