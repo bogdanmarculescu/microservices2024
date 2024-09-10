@@ -20,8 +20,9 @@ public class OngoingController {
     @GetMapping
     public OutcomeR communicationSolution(){
         RoundR roundR = new RoundR();
-        roundR.playedCardId = 42;
-        roundR.roundId = 42L;
+        roundR.setPlayerId(13L);
+        roundR.setRoundId(42L);
+        roundR.setPlayedCardId(1L);
 
         OutcomeR or = ongoingRound.completeRound(roundR);
         return or;

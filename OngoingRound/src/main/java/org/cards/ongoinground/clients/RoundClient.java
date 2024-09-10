@@ -3,6 +3,7 @@ package org.cards.ongoinground.clients;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.cards.ongoinground.dtos.OutcomeDTO;
+import org.cards.ongoinground.model.RoundR;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.http.HttpEntity;
@@ -44,20 +45,20 @@ public class RoundClient {
         return response.getBody();
     }
 
-    public OutcomeDTO externalPostSolver(){
+    public OutcomeDTO externalPostSolver(RoundR round){
         String url = restServiceUrl + "/round";
-        ResponseEntity<OutcomeDTO> response = null;
+        //ResponseEntity<OutcomeDTO> response = null;
+        OutcomeDTO response = null;
 
         try {
             HttpHeaders header = new HttpHeaders();
             header.setContentType(MediaType.APPLICATION_JSON);
-            String body = "{\n" +
-                    "    \"roundId\": 1,\n" +
-                    "    \"playedCardId\": 42\n" +
-                    "}";
 
-            HttpEntity<String> entity = new HttpEntity<String>(body, header);
-            response = restTemplate.postForEntity(url, entity, OutcomeDTO.class);
+            log.info("Round: " + round.toString());
+
+            HttpEntity<String> entity = new HttpEntity<String>(round.toString(), header);
+            //response = restTemplate.postForObject(url, entity, OutcomeDTO.class);
+            response = restTemplate.postForObject(url, round, OutcomeDTO.class);
         }
         catch (Exception e) {
             log.error(e.getMessage());
@@ -66,7 +67,7 @@ public class RoundClient {
         }
 
         log.info("Well I'm here, and not crashing");
-        log.warn("Response: " + response.getBody());
-        return response.getBody();
+        log.warn("Response: " + response.getOutcomeText());
+        return response;
     }
 }

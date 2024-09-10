@@ -15,4 +15,6 @@ public class Outcome {
     @Id
     @Generated
     private Long outcomeId;
+
+    private Long winningPlayerId;
 }

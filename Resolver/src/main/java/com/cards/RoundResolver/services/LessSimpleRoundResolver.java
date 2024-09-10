@@ -22,6 +22,14 @@ public class LessSimpleRoundResolver implements RoundResolver {
     }
 
     public Outcome solve(Round round, int dieRoll){
-        return new Outcome("I had a die roll: " + dieRoll, 42L);
+        Long cardId = round.getPlayedCardId();
+
+        Outcome outcome = new Outcome();
+        outcome.setOutcomeText("You played: " + cardId + "; I had a die roll: " + dieRoll);
+        outcome.setOutcomeId(42L);
+
+        outcome.setWinningPlayerId(round.getPlayerId());
+
+        return outcome;
     }
 }

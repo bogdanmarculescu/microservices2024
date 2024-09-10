@@ -27,13 +27,17 @@ public class RoundController {
     }
 
     @PostMapping
-    public ResponseEntity<Outcome> resolve(@RequestBody Round round){
+    public ResponseEntity<Outcome> resolve(
+            @RequestBody Round round){
+
         log.info("It's a test 2! This time it's objects");
 
         Outcome outcome = roundResolver.solve(round);
         log.warn("Here's what I'm sending: " + outcome.getOutcomeText());
 
-        ResponseEntity<Outcome> result = new ResponseEntity<>(outcome, HttpStatusCode.valueOf(200));
+        ResponseEntity<Outcome> result = new ResponseEntity<>(
+                outcome,
+                HttpStatusCode.valueOf(200));
 
         return result;
     }

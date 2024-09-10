@@ -15,5 +15,6 @@ public class Round {
     @Generated
     private Long roundId;
 
-    private int playedCardId;
+    private Long playedCardId;
+    private Long playerId;
 }

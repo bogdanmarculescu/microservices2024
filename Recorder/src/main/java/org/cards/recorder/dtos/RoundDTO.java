@@ -1,4 +1,4 @@
-package org.cards.ongoinground.dtos;
+package org.cards.recorder.dtos;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -9,4 +9,5 @@ public class RoundDTO {
     private Long playedCardId;
     private Long roundId;
     private Long playerId;
+
 }
