@@ -8,6 +8,7 @@ import org.cards.ongoinground.model.OutcomeR;
 @Setter
 public class OutcomeDTO {
     private String receivedText;
+    private Long outcomeId;
 
     public OutcomeR convertToOutcomeR(){
         OutcomeR outcomeR = new OutcomeR();
