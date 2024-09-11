@@ -3,7 +3,9 @@ package org.cards.recorder.configuration;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.module.paramnames.ParameterNamesModule;
+import org.springframework.amqp.core.*;
 import org.springframework.amqp.rabbit.annotation.RabbitListenerConfigurer;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.messaging.converter.MappingJackson2MessageConverter;
@@ -12,6 +14,40 @@ import org.springframework.messaging.handler.annotation.support.MessageHandlerMe
 
 @Configuration
 public class AMQPConfiguration {
+
+    //configure the exchange
+
+    @Bean
+    public TopicExchange roundTopicExchange(
+            @Value("${amqp.exchange.rounds}") final String exchangeName
+    ) {
+        return ExchangeBuilder
+                .topicExchange(exchangeName)
+                .durable(true)
+                .build();
+    }
+
+    //configure the queue(s)
+    @Bean
+    public Queue roundQueue(
+           @Value("${amqp.queue.recorder}") final String queueName
+    ){
+        return QueueBuilder
+                .durable(queueName)
+                .build();
+    }
+
+    //configure the bindings
+    @Bean
+    public Binding roundLostBinding(
+            final Queue roundQueue,
+            final TopicExchange roundTopicExchange
+    ){
+        return BindingBuilder
+                .bind(roundQueue)
+                .to(roundTopicExchange)
+                .with("rounds.lost");
+    }
 
     @Bean
     public MessageHandlerMethodFactory messageHandlerMethodFactory() {

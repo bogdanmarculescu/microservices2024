@@ -5,6 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.cards.recorder.dtos.OutcomeDTO;
 import org.cards.recorder.dtos.RecorderDTO;
 import org.cards.recorder.dtos.RoundDTO;
+import org.cards.recorder.eventdriven.RoundEventHandler;
 import org.cards.recorder.model.RoundRecord;
 import org.cards.recorder.service.RecorderService;
 import org.springframework.http.HttpStatusCode;

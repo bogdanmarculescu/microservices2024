@@ -5,6 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.cards.ongoinground.clients.RecorderClient;
 import org.cards.ongoinground.clients.RoundClient;
 import org.cards.ongoinground.dtos.OutcomeDTO;
+import org.cards.ongoinground.eventdriven.RoundEventPublisher;
 import org.cards.ongoinground.model.OutcomeR;
 import org.cards.ongoinground.model.RoundR;
 import org.springframework.stereotype.Service;
@@ -15,7 +16,9 @@ import org.springframework.stereotype.Service;
 public class OngoingRoundExampleImpl implements OngoingRound{
 
     private final RoundClient roundClient;
-    private final RecorderClient recorderClient;
+    //private final RecorderClient recorderClient;
+    private final RoundEventPublisher eventPublisher;
+
 
     @Override
     public OutcomeR completeRound(RoundR round) {
@@ -27,9 +30,12 @@ public class OngoingRoundExampleImpl implements OngoingRound{
         OutcomeR outcome = o.convertToOutcomeR();
         // record
         log.info("Record about to start");
-        String rec = recorderClient.record(round, outcome);
 
-        log.info("Record about to finish: " + rec);
+        //String rec = recorderClient.record(round, outcome);
+        //eventPublisher.publishRoundEvent(round, outcome);
+        eventPublisher.publishRoundEventString(round, outcome);
+
+        log.info("Record should be done.");
 
         return outcome;
     }
