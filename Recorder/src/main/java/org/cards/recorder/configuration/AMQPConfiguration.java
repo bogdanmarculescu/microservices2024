@@ -39,14 +39,14 @@ public class AMQPConfiguration {
 
     //configure the bindings
     @Bean
-    public Binding roundLostBinding(
+    public Binding roundsBinding(
             final Queue roundQueue,
             final TopicExchange roundTopicExchange
     ){
         return BindingBuilder
                 .bind(roundQueue)
                 .to(roundTopicExchange)
-                .with("rounds.lost");
+                .with("round.*");
     }
 
     @Bean
