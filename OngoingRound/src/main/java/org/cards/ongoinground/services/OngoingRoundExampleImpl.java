@@ -34,7 +34,7 @@ public class OngoingRoundExampleImpl implements OngoingRound{
         log.info("Record about to start");
 
         //String rec = recorderClient.record(round, outcome);
-        roundEventPublisher.publishRoundEventString(round, outcome);
+        roundEventPublisher.publishRoundEvent(round, outcome);
 
         log.info("Record about to finish.");
 

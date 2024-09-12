@@ -2,6 +2,7 @@ package org.cards.recorder.eventdriven;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.cards.recorder.model.RoundRecord;
 import org.cards.recorder.service.RecorderServiceImpl;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.stereotype.Service;
@@ -17,10 +18,11 @@ public class RoundEventHandler {
             queues = "outcome.won"
     )
     void handleRoundEvent(
-            String message
+            RoundRecord message
     ) {
         log.info("Got this from the Rabbit: " + message);
-        //recorderService.addRoundForUser();
+
+        recorderService.addRoundForUser(message);
     }
 
 }

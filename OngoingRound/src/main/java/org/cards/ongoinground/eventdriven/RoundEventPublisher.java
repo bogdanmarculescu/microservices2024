@@ -43,6 +43,19 @@ public class RoundEventPublisher {
         amqpTemplate.convertAndSend(exchangeName, routingKey, event);
     }
 
+    public void publishRoundEvent(
+            RoundR round,
+            OutcomeR outcome
+    ){
+        RoundEvent event = buildEvent(round, outcome);
+        String routingKey = "round." +
+                (event.getWinningPlayerId() == null ?
+                        "lost" : "won");
+        log.info("Here's the Rabbit message (as object): {}", event);
+        amqpTemplate.convertAndSend(exchangeName, routingKey, event);
+
+    }
+
     public String buildEventString(RoundR round, OutcomeR outcome){
         StringBuffer eventBuffer = new StringBuffer();
 
@@ -54,5 +67,16 @@ public class RoundEventPublisher {
                 .append("\"winningPlayerId\":" + outcome.getWinningPlayerId())
                 .append("}");
         return eventBuffer.toString();
+    }
+
+    public RoundEvent buildEvent(RoundR round, OutcomeR outcome){
+        RoundEvent event = new RoundEvent(
+                round.getPlayedCardId(),
+                round.getRoundId(),
+                outcome.getOutcomeId(),
+                outcome.getOutcomeText(),
+                outcome.getWinningPlayerId()
+        );
+        return event;
     }
 }
