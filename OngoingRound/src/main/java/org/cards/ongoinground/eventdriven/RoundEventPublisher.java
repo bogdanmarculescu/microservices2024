@@ -39,7 +39,7 @@ public class RoundEventPublisher {
                         "lost" : "won");
 
         // send the thing
-
+        log.info("Here's the Rabbit message: {}", event);
         amqpTemplate.convertAndSend(exchangeName, routingKey, event);
     }
 
