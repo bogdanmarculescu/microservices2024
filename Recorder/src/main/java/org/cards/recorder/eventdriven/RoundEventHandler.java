@@ -15,13 +15,32 @@ public class RoundEventHandler {
     private final RecorderServiceImpl recorderService;
 
     @RabbitListener(
-            queues = "outcome.won"
+            queues = "outcome.all"
     )
-    void handleRoundEvent(
+    void handleRoundEventAll(
             RoundRecord message
     ) {
-        log.info("Got this from the Rabbit: " + message);
+        log.info("Got this - from the Rabbit: " + message);
+        recorderService.addRoundForUser(message);
+    }
 
+    @RabbitListener(
+            queues = "outcome.won"
+    )
+    void handleRoundEventWon(
+            RoundRecord message
+    ) {
+        log.info("Got this (win) from the Rabbit: " + message);
+        recorderService.addRoundForUser(message);
+    }
+
+    @RabbitListener(
+            queues = "outcome.lost"
+    )
+    void handleRoundEventLost(
+            RoundRecord message
+    ) {
+        log.info("Got this (loss) from the Rabbit: " + message);
         recorderService.addRoundForUser(message);
     }
 

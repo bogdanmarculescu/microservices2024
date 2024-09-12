@@ -28,17 +28,55 @@ public class AMQPConfiguration {
 
     // bindings
     @Bean
-    public Binding roundLostBinding(
+    public Binding roundAllBinding(
           final Queue roundQueue,
           final TopicExchange roundTopicExchange
     ){
         return BindingBuilder
                 .bind(roundQueue)
                 .to(roundTopicExchange)
+                .with("round.*");
+    }
+
+    @Bean
+    public Binding roundLostBinding(
+            final Queue roundLostQueue,
+            final TopicExchange roundTopicExchange
+    ){
+        return BindingBuilder
+                .bind(roundLostQueue)
+                .to(roundTopicExchange)
+                .with("round.lost");
+    }
+
+    @Bean
+    public Binding roundWonBinding(
+            final Queue roundWonQueue,
+            final TopicExchange roundTopicExchange
+    ){
+        return BindingBuilder
+                .bind(roundWonQueue)
+                .to(roundTopicExchange)
                 .with("round.won");
     }
 
     // queues
+    @Bean
+    public Queue roundWonQueue(
+            @Value("${amqp.queue.won.name}") final String queueName
+    ){
+        return QueueBuilder
+                .durable(queueName)
+                .build();
+    }
+    @Bean
+    public Queue roundLostQueue(
+            @Value("${amqp.queue.lost.name}") final String queueName
+    ){
+        return QueueBuilder
+                .durable(queueName)
+                .build();
+    }
     @Bean
     public Queue roundQueue(
             @Value("${amqp.queue.name}") final String queueName

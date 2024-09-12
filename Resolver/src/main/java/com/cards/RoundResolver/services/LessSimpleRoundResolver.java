@@ -28,7 +28,10 @@ public class LessSimpleRoundResolver implements RoundResolver {
         outcome.setOutcomeText("You played: " + cardId + "; I had a die roll: " + dieRoll);
         outcome.setOutcomeId(42L);
 
-        outcome.setWinningPlayerId(round.getPlayerId());
+        if(dieRoll%2 == 0){
+            outcome.setWinningPlayerId(round.getPlayerId());
+        }
+        //outcome.setWinningPlayerId(round.getPlayerId());
 
         return outcome;
     }
