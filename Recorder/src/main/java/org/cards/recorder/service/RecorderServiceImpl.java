@@ -22,8 +22,9 @@ public class RecorderServiceImpl implements RecorderService {
     @Transactional
     public Long addRoundForUser(RoundRecord record) {
         log.info("Repo - adding record: "+ record);
-        roundRecordRepository.save(record);
-        return 1L;
+        RoundRecord added = null;
+        added = roundRecordRepository.save(record);
+        return added.getRecordId();
     }
 
     @Override
