@@ -32,9 +32,9 @@ public class RecorderServiceImpl implements RecorderService {
     public List<RoundRecord> getAllRounds() {
         Iterable<RoundRecord> rounds = roundRecordRepository.findAll();
         List<RoundRecord> roundList = new ArrayList<>();
-        while(rounds.iterator().hasNext()) {
-            roundList.add(rounds.iterator().next());
-        }
+
+        rounds.forEach(roundList::add);
+
         return roundList;
     }
 

@@ -7,30 +7,41 @@ spring:
   config:
     import: "optional:consul:"
   cloud:
+    loadbalancer:
+      ribbon:
+        enabled: false
+    consul:
+      enabled: true
+      discovery:
+        query-passing: true
+      config:
+        data-key: application.yml
+        prefix: config
+        format: yaml
+        default-context: defaults
     gateway:
       routes:
-        - id: ongoing
-          uri: lb://ongoing
+        - id: ongoinground
+          uri: lb://ongoing/
           predicates:
             - Path=/round,/round/**
         - id: recorder
-          uri: lb://recorder
+          uri: lb://record/
           predicates:
-            - Path=/record
+            - Path=/record,/record/**
+        - id: resolver
+          uri: lb://resolver/
+          predicates:
+            - Path=/round
       globalcors:
         cors-configurations:
           '[/**]':
             allowed-origins:
-              - "http://localhost:3000"
+              -  "http://localhost:3000"
             allowed-headers:
-              - "*"
+              -  "*"
             allowed-methods:
               - "GET"
               - "POST"
               - "OPTIONS"
-      default-filters:
-        - name: Retry
-          args:
-            retries: 3
-            methods: GET, POST
-
+            allow-credentials: true
