@@ -26,6 +26,12 @@ public class RecorderController {
         return recorderService.getAllRounds();
     }
 
+    @GetMapping("/id")
+    public List<RoundRecord> getRecordsFromUser(Long playerId){
+        return recorderService.getRoundsForUser(playerId);
+    }
+
+
     @PostMapping
     public ResponseEntity<String> addRecord(
             @RequestBody RecorderDTO recordDTO){

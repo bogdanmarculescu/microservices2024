@@ -38,7 +38,7 @@ public class RecorderServiceImpl implements RecorderService {
         return roundList;
     }
 
-    public List<RoundRecord> getRoundsForUser(long userId) {
+    public List<RoundRecord> getRoundsForUser(Long userId) {
         List<RoundRecord> records = roundRecordRepository
                 .findRoundRecordsByWinningPlayerId(userId)
                 .stream().collect(Collectors.toList());

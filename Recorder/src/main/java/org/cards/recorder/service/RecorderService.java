@@ -8,4 +8,5 @@ public interface RecorderService {
 
     Long addRoundForUser(RoundRecord record);
     List<RoundRecord> getAllRounds();
+    List<RoundRecord> getRoundsForUser(Long id);
 }
