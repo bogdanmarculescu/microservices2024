@@ -26,7 +26,7 @@ spring:
           predicates:
             - Path=/round,/round/**
         - id: recorder
-          uri: lb://record/
+          uri: lb://recorder/
           predicates:
             - Path=/record,/record/**
         - id: resolver
