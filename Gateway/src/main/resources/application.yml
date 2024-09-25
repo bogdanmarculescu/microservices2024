@@ -36,12 +36,19 @@ spring:
       globalcors:
         cors-configurations:
           '[/**]':
-            allowed-origins:
-              -  "http://localhost:3000"
-            allowed-headers:
-              -  "*"
-            allowed-methods:
+            allowedOrigins: "http://localhost:3000"
+            allowedHeaders: "*"
+            allowedMethods:
               - "GET"
               - "POST"
               - "OPTIONS"
             allow-credentials: true
+      default-filters:
+        - name: Retry
+          args:
+            retries: 3
+            methods: GET,POST
+
+logging:
+  level:
+    org.springframework.cloud.gateway: DEBUG
