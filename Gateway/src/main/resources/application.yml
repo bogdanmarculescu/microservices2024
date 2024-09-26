@@ -22,7 +22,7 @@ spring:
     gateway:
       routes:
         - id: ongoinground
-          uri: lb://ongoing/
+          uri: lb://ongoinground/
           predicates:
             - Path=/round,/round/**
         - id: recorder

@@ -34,7 +34,7 @@ public class RecorderServiceImpl implements RecorderService {
         List<RoundRecord> roundList = new ArrayList<>();
 
         rounds.forEach(roundList::add);
-
+        log.info("I am returning a list of rounds: " + roundList);
         return roundList;
     }
 

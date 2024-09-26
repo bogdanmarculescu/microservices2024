@@ -11,7 +11,7 @@ const RoundsRecordedComponent = () => {
     const [rounds, setRounds] = useState<Round[]>([]);
     const [loading, setLoading] = useState<boolean>(true);
 
-    const SERVER_URL = 'http://localhost:8082';
+    const SERVER_URL = 'http://localhost:8000';
 
     useEffect(() => {
         const fetchRounds = async () => {
