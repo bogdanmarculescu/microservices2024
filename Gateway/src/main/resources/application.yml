@@ -24,7 +24,7 @@ spring:
         - id: ongoinground
           uri: lb://ongoinground/
           predicates:
-            - Path=/round,/round/**
+            - Path=/ongoing
         - id: recorder
           uri: lb://recorder/
           predicates:
@@ -45,3 +45,4 @@ spring:
               - "POST"
               - "OPTIONS"
             allow-credentials: true
+
