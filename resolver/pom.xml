@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.cards</groupId>
-	<artifactId>RoundResolver</artifactId>
+	<artifactId>resolver</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>RoundResolver</name>
+	<name>Resolver</name>
 	<description>Demo project for Spring Boot</description>
 	<url/>
 	<licenses>

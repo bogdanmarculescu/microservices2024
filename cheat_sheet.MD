@@ -20,3 +20,12 @@ mvn spring-boot:run
 mvn spring-boot:run -Dspring-boot.run.arguments=--server.port=<portNumber>
 - example:
 mvn spring-boot:run -Dspring-boot.run.arguments=--server.port=8083
+
+
+Docker
+docker build -t <tag-service-name-version> .
+example:
+docker build -t resolver:0.0.1 .
+
+docker network create micro_cards
+docker run -d --name=consul --network=micro_cards -p 8500:8500 consul
