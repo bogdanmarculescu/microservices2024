@@ -37,3 +37,4 @@ docker run -d --name=rabbitmq --network=micro_cards -p 15672:15672 rabbitmq:3-ma
 Run our containers
 docker run --network=micro_cards -p 8080:8080 resolver:0.0.1
 docker run --network=micro_cards -p 8082:8082 recorder:0.0.1
+docker run --network=micro_cards -p 8081:8081 ongoing:0.0.1
