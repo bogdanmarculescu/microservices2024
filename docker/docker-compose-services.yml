@@ -1,0 +1,52 @@
+services:
+
+  frontend:
+    image: front:1.0
+    ports:
+      - '3000:80'
+
+  gateway:
+    image: gateway:0.0.1-SNAPSHOT
+    ports:
+      - '8000:8000'
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+      - SPRING_CLOUD_CONSUL_HOST=consul
+    depends_on:
+      - rabbitmq-dev
+      - consul-importer
+    networks:
+      - micro_cards
+
+  consul-dev:
+    image: hashicorp/consul:1.19.2
+    container_name: consul
+    ports:
+      - '8500:8500'
+      - '8600:8600/udp'
+    command: 'agent -dev -node=cards -client=0.0.0.0 -log-level=INFO'
+    networks:
+      - micro_cards
+
+  consul-importer:
+    image: consul-importer:1.9
+    depends_on:
+      - consul-dev
+    networks:
+      - micro_cards
+
+  rabbitmq-dev:
+    image: rabbitmq:3-management
+    container_name: rabbitmq
+    ports:
+      - '5672:5672'
+      - '15672:15672'
+    networks:
+      - micro_cards
+
+
+
+
+networks:
+  micro_cards:
+    driver: bridge

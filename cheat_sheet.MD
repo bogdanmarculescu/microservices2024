@@ -27,6 +27,10 @@ docker build -t <tag-service-name-version> .
 example:
 docker build -t resolver:0.0.1 .
 
+Alternatively, use spring-boot to build image:
+mvn spring-boot:build-image
+
+
 docker network creation
 docker network create micro_cards
 
@@ -38,3 +42,9 @@ Run our containers
 docker run --network=micro_cards -p 8080:8080 resolver:0.0.1
 docker run --network=micro_cards -p 8082:8082 recorder:0.0.1
 docker run --network=micro_cards -p 8081:8081 ongoing:0.0.1
+
+Pruning docker images:
+docker image prune -a
+
+Docker compose!
+docker compose -f "docker-compose-start.yml" up --build

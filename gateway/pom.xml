@@ -9,7 +9,7 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>org.cards</groupId>
-    <artifactId>Gateway</artifactId>
+    <artifactId>gateway</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>Gateway</name>
     <description>Gateway</description>

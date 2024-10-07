@@ -1,0 +1,37 @@
+[
+  {
+    "key": "config/",
+    "flags": 0,
+    "value": ""
+  },
+  {
+    "key": "config/ongoing,dev/",
+    "flags": 0,
+    "value": ""
+  },
+  {
+    "key": "config/ongoing,dev/application.yml",
+    "flags": 0,
+    "value": "c2VydmVyOgogcG9ydDoKICAxMTA4MA=="
+  },
+  {
+    "key": "config/recorder,dev/",
+    "flags": 0,
+    "value": ""
+  },
+  {
+    "key": "config/recorder,dev/application.yml",
+    "flags": 0,
+    "value": "c2VydmVyOgogcG9ydDogCiAgOTA4MA=="
+  },
+  {
+    "key": "config/resolver,dev/",
+    "flags": 0,
+    "value": ""
+  },
+  {
+    "key": "config/resolver,dev/application.yml",
+    "flags": 0,
+    "value": "c2VydmVyOgogcG9ydDoKICAxMDA4MA=="
+  }
+]
