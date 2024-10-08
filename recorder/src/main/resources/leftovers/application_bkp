@@ -1,0 +1,74 @@
+spring:
+  application:
+    name: recorder
+  datasource:
+    url: jdbc:h2:file:~/recorder;AUTO_SERVER=TRUE
+    driver-class-name: org.h2.Driver
+    username: sa
+  h2:
+    console:
+      enabled: true
+  config:
+    import: "optional:consul:"
+  cloud:
+    consul:
+      config:
+        prefixes: "config"
+        format: yaml
+        default-context: "defaults"
+        data-key: "application.yml"
+      host: consul
+      port: 8500
+  rabbitmq:
+    host: rabbitmq
+    port: 5672
+
+server:
+  port: 8082
+
+amqp:
+  exchange:
+    name: round.topic
+  queue:
+    won:
+      name: outcome.won
+    lost:
+      name: outcome.lost
+    name: outcome.all
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health
+
+---
+spring:
+  profiles: docker
+  datasource:
+    url: "jdbc:h2:file:/data/recorder;AUTO_SERVER=TRUE;DB_CLOSE_ON_EXIT=FALSE"
+    driver-class-name: org.h2.Driver
+    username: "sa"
+  h2:
+    console:
+      enabled: true
+  config:
+    import: "optional:consul:"
+  cloud:
+    consul:
+      config:
+        prefixes: "config"
+        format: yaml
+        default-context: "defaults"
+        data-key: "application.yml"
+      host: consul
+      port: 8500
+  rabbitmq:
+    host: rabbitmq
+    port: 5672
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health

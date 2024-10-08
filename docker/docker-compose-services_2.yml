@@ -1,3 +1,5 @@
+version: "3.8"
+
 services:
 
   frontend:
@@ -39,6 +41,18 @@ services:
     networks:
       - micro_cards
 
+  recorder:
+    image: recorder:0.0.1-SNAPSHOT
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+      - SPRING_CLOUD_CONSUL_HOST=consul
+      - SPRING_DATASOURCE_URL=jdbc:h2:tcp://h2-server:1521/home/h2-data/recorder
+    depends_on:
+      - consul-importer
+      - rabbitmq-dev
+    networks:
+      - micro_cards
+
   consul-dev:
     image: hashicorp/consul:1.19.2
     container_name: consul
@@ -64,6 +78,9 @@ services:
       - '15672:15672'
     networks:
       - micro_cards
+
+volumes:
+  h2-data:
 
 networks:
   micro_cards:

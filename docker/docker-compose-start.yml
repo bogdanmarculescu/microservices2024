@@ -13,7 +13,7 @@ services:
       - micro_cards
 
   consul-importer:
-    image: consul-importer:1.9
+    image: consul-importer:1.19.2
     depends_on:
       - consul-dev
     networks:

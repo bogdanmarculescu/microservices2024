@@ -9,10 +9,10 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>org.cards</groupId>
-    <artifactId>OngoingRound</artifactId>
+    <artifactId>ongoing</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>OngoingRound</name>
-    <description>OngoingRound</description>
+    <name>Ongoing</name>
+    <description>Ongoing</description>
     <url/>
     <licenses>
         <license/>
