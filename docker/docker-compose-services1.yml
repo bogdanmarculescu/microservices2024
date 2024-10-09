@@ -33,6 +33,31 @@ services:
     networks:
       - micro_card
 
+  resolver:
+    image: resolver:0.0.1-SNAPSHOT
+    ports:
+      - '8085:8085'
+    environment:
+      - SPRING_PROFILES_ACTIVE=dev
+      - SPRING_CLOUD_CONSUL_HOST=consul
+    depends_on:
+      - consul-importer
+    networks:
+      - micro_card
+
+  ongoing:
+    image: ongoing:0.0.1-SNAPSHOT
+    ports:
+      - '8081:8081'
+    environment:
+      - SPRING_PROFILES_ACTIVE=dev
+      - SPRING_CLOUD_CONSUL_HOST=consul
+    depends_on:
+      - consul-importer
+      - rabbitmq-dev
+    networks:
+      - micro_card
+
   rabbitmq-dev:
     image: rabbitmq:3-management
     container_name: rabbitmq

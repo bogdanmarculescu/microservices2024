@@ -25,7 +25,7 @@ public class RoundClient {
 
     public RoundClient(
             RestTemplateBuilder restTemplateBuilder,
-            @Value("http://localhost:8080") final String url
+            @Value("${service.round.host}") final String url
     ){
         this.restTemplate = restTemplateBuilder.build();
         this.restServiceUrl = url;
