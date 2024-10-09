@@ -21,8 +21,8 @@ spring:
         default-context: defaults
     gateway:
       routes:
-        - id: ongoinground
-          uri: lb://ongoinground/
+        - id: ongoing
+          uri: lb://ongoing/
           predicates:
             - Path=/ongoing
         - id: recorder
@@ -32,12 +32,12 @@ spring:
         - id: resolver
           uri: lb://resolver/
           predicates:
-            - Path=/round
+            - Path=/round,/round/**
       globalcors:
         cors-configurations:
           '[/**]':
             allowed-origins:
-              -  "http://localhost:3000"
+              - "http://localhost:3000"
             allowed-headers:
               -  "*"
             allowed-methods:
