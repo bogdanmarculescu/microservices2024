@@ -27,6 +27,9 @@ services:
     environment:
       - SPRING_PROFILES_ACTIVE=dev
       - SPRING_CLOUD_CONSUL_HOST=consul
+      - SPRING_DATASOURCE_URL=jdbc:h2:file:/data/recorder;AUTO_SERVER=TRUE
+    volumes:
+      - ./data:/data
     depends_on:
       - rabbitmq-dev
       - consul-importer
