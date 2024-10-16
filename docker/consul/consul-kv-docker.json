@@ -12,7 +12,7 @@
   {
     "key": "config/ongoing,dev/application.yml",
     "flags": 0,
-    "value": "c2VydmVyOgogcG9ydDoKICAxMTA4MA=="
+    "value": "c2VydmVyOgogcG9ydDoKICAxMTA4MApzcHJpbmc6CiByYWJiaXRtcToKICBob3N0OgogICByYWJiaXRtcQogIHBvcnQ6CiAgIDU2NzI="
   },
   {
     "key": "config/recorder,dev/",
@@ -22,7 +22,17 @@
   {
     "key": "config/recorder,dev/application.yml",
     "flags": 0,
-    "value": "c2VydmVyOgogcG9ydDogCiAgOTA4MA=="
+    "value": "c2VydmVyOgogcG9ydDogCiAgOTA4MApzcHJpbmc6CiByYWJiaXRtcToKICBob3N0OgogICByYWJiaXRtcQogIHBvcnQ6CiAgIDU2NzI="
+  },
+  {
+    "key": "config/recorder,docker/",
+    "flags": 0,
+    "value": ""
+  },
+  {
+    "key": "config/recorder,docker/application.yml",
+    "flags": 0,
+    "value": "c3ByaW5nOgogcmFiYml0bXE6CiAgaG9zdDoKICAgcmFiYml0bXEKICBwb3J0OgogICA1NjcyCiBjbG91ZDoKICBjb25zdWw6CiAgIGRpc2NvdmVyeToKICAgIGVuYWJsZWQ6IHRydWUKICAgIHByZWZlci1pcC1hZGRyZXNzOiB0cnVlCiAgICBpbnN0YW5jZS1pZDogJHtzcHJpbmcuYXBwbGljYXRpb24ubmFtZX06JHtzcHJpbmcuY2xvdWQuY2xpZW50Lmhvc3RuYW1lfToke3JhbmRvbS52YWx1ZX0="
   },
   {
     "key": "config/resolver,dev/",
