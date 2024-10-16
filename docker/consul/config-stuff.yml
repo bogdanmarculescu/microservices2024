@@ -1,0 +1,7 @@
+spring:
+  cloud:
+    consul:
+      discovery:
+        enabled: true
+        prefer-ip-address: true
+        instance-id: ${spring.application.name}:${spring.cloud.client.hostname}:${random.value}

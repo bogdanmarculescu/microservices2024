@@ -23,9 +23,9 @@ services:
   recorder:
     image: recorder:0.0.1-SNAPSHOT
     ports:
-      - '8082'
+      - '8082:8082'
     environment:
-      - SPRING_PROFILES_ACTIVE=docker
+      - SPRING_PROFILES_ACTIVE=dev
       - SPRING_CLOUD_CONSUL_HOST=consul
     depends_on:
       - rabbitmq-dev
@@ -33,10 +33,22 @@ services:
     networks:
       - micro_card
 
-  resolver:
+  resolver-2:
     image: resolver:0.0.1-SNAPSHOT
     ports:
       - '8085:8085'
+    environment:
+      - SPRING_PROFILES_ACTIVE=dev
+      - SPRING_CLOUD_CONSUL_HOST=consul
+    depends_on:
+      - consul-importer
+    networks:
+      - micro_card
+
+  resolver-1:
+    image: resolver:0.0.1-SNAPSHOT
+    ports:
+      - '8086:8085'
     environment:
       - SPRING_PROFILES_ACTIVE=dev
       - SPRING_CLOUD_CONSUL_HOST=consul
