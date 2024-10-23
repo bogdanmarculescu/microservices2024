@@ -27,8 +27,6 @@ services:
     environment:
       - SPRING_PROFILES_ACTIVE=docker
       - SPRING_CLOUD_CONSUL_HOST=consul
-    volumes:
-      - ./recorder/logs:/var/log
     depends_on:
       - rabbitmq-dev
       - consul-importer
@@ -113,9 +111,6 @@ services:
   logstash:
     image: docker.elastic.co/logstash/logstash:8.10.2
     container_name: logstash
-    volumes:
-      - ./logstash/logstash.conf:/usr/share/logstash/pipeline/logstash.conf
-      - ./recorder:/var/log/recorder
     ports:
       - "5044:5044"
     depends_on:
