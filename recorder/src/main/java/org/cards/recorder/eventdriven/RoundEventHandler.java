@@ -15,7 +15,8 @@ public class RoundEventHandler {
     private final RecorderServiceImpl recorderService;
 
     @RabbitListener(
-            queues = "outcome.all"
+            queues = "outcome.all",
+            id = "roundListener"
     )
     void handleRoundEventAll(
             RoundRecord message

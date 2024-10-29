@@ -1,6 +1,7 @@
 package com.cards.RoundResolver;
 
 import com.cards.RoundResolver.model.Round;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 import io.restassured.RestAssured;
@@ -21,12 +22,14 @@ class RoundResolverApplicationTests {
 	void contextLoads() {
 	}
 
-	@Test
-	void basicGetTest(){
+	@BeforeEach
+	void preTestSetup(){
 		RestAssured.baseURI = "http://localhost";
 		RestAssured.port = port;
+	}
 
-		Round round = new Round();
+	@Test
+	void basicGetTest(){
 		ValidatableResponse res_0 = given().accept("*/*")
 					.contentType("application/json")
 				.when()
@@ -36,17 +39,12 @@ class RoundResolverApplicationTests {
 					.assertThat()
 					.contentType("application/json")
 					.body("id", emptyOrNullString())
-				.body("playerId", emptyOrNullString())
-				.body("cardId", emptyOrNullString());
-
-		System.out.println(res_0);
+					.body("playerId", emptyOrNullString())
+					.body("cardId", emptyOrNullString());
 	}
 
 	@Test
 	void basicPostTest(){
-		RestAssured.baseURI = "http://localhost";
-		RestAssured.port = port;
-
 		Round round = new Round();
 		round.setPlayerId(42L);
 		round.setPlayedCardId(13L);
