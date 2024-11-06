@@ -29,3 +29,17 @@ docker build -t resolver:0.0.1 .
 
 docker network create micro_cards
 docker run -d --name=consul --network=micro_cards -p 8500:8500 consul
+
+
+keycloak:
+docker run -p 8080:8080 -e KC_BOOTSTRAP_ADMIN_USERNAME=admin -e KC_BOOTSTRAP_ADMIN_PASSWORD=admin quay.io/keycloak/keycloak:26.0.5 start-dev
+
+
+
+curl -X POST "http://localhost:8080/realms/micro2024/protocol/openid-connect/token" \
+-H "Content-Type: application/x-www-form-urlencoded" \
+-d "client_id=cards_2024" \
+-d "client_secret=beUcfHL6BJ90dVhtYo1bo4UwzGs2hHkq" \
+-d "username=atester" \
+-d "password=tester" \
+-d "grant_type=password"

@@ -27,4 +27,15 @@ public class OngoingController {
         OutcomeR or = ongoingRound.completeRound(roundR);
         return or;
     }
+
+    @GetMapping("/secTest")
+    public OutcomeR solveRound(){
+        RoundR roundR = new RoundR();
+        roundR.setPlayerId(1L);
+        roundR.setRoundId(42L);
+        roundR.setPlayedCardId(13L);
+
+        OutcomeR or = ongoingRound.completeRound(roundR);
+        return or;
+    }
 }

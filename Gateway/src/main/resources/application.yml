@@ -6,6 +6,13 @@ spring:
     name: gateway
   config:
     import: "optional:consul:"
+
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://0.0.0.0:8080/realms/micro2024
+
   cloud:
     loadbalancer:
       ribbon:
